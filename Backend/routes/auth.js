@@ -4,6 +4,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fetchUser = require('../middleware/fetchUser');
 
 const JWT_SECRET = "Omis&agood&boy";
 
@@ -48,11 +49,11 @@ router.post('/createuser', [
 
     // res.json(user);
     // sending auth token as response
-    res.json({ authToken });
+    return res.json({ authToken });
 
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 })
 
@@ -96,18 +97,17 @@ router.post('/login', [
 
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    return res.status(500).send("Internal Server Error");
   }
 
 });
 
 // ENDPOINT 3: Get logged in User details : POST "/api/auth/getuser". Login required
-router.post('/getuser', async (req, res) => {
-  
+router.post('/getuser', fetchUser ,  async (req, res) => {
   try {
-    let userId = "todo";
+    let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-
+    res.send(user);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
