@@ -106,6 +106,7 @@ router.post('/login', [
 router.post('/getuser', fetchUser ,  async (req, res) => {
   try {
     let userId = req.user.id;
+    // find the user with corresponding user id and select all the data feilds to send, except the password feild.
     const user = await User.findById(userId).select("-password");
     res.send(user);
   } catch (error) {
