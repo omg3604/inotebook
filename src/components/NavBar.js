@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useContext , useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import UserContext from '../context/user/userContext';
 
 const NavBar = (props) => {
+    const context = useContext(UserContext);
+    const {details , getUserDetails} = context;
 
     let location = useLocation();
     let navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
-        props.showAlert('success' , 'Logged Out successfully!');
+        props.showAlert('success', 'Logged Out successfully!');
     }
 
+    const handleAccount = () => {
+        getUserDetails(localStorage.getItem('token'));
+    }
+
+    // Jugaad 
+    useEffect(() => {
+        getUserDetails(localStorage.getItem('token'));
+    }, []);
+    // --- 
+    
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container-fluid">
+                <div className="container-fluid mx-3">
                     <Link className="navbar-brand" to="/">iNotebook</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -29,13 +42,26 @@ const NavBar = (props) => {
                             </li>
                         </ul>
                         {!localStorage.getItem('token') ?
-                            <form className="d-flex" role="search">
+                            <form className="d-flex">
                                 <Link className='btn btn-primary mx-2' to="/Login" role='button'> Login </Link>
                                 <Link className='btn btn-primary mx-2' to="/Signup" role='button'> Signup </Link>
                             </form>
-                        :    <form className="d-flex" role="search">
-                                <Link className='btn btn-primary mx-2' to="/Login" role='button' onClick={handleLogout}> Log out </Link>
-                            </form>}
+                        :   <form className="d-flex mx-2">
+                                <div className="btn-group">
+                                    <button type="button" className="btn btn-light dropdown-toggle d-flex flex-row align-items-center " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <p className='mx-2 pt-3'>{details.name}</p>
+                                        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" className="rounded-circle" style={{width : "40px"}} alt="Avatar"></img>
+                                    </button>
+                                    <div className="dropdown-menu dropdown-menu-end">
+                                        <Link className="dropdown-item" aria-current="page" to="/Account" onClick={handleAccount}>My Account</Link>
+                                        <a className="dropdown-item" href="/">Another action</a>
+                                        <a className="dropdown-item" href="/">Something else here</a>
+                                        <div className="dropdown-divider"></div>
+                                        <Link className='btn btn-primary mx-2' to="/Login" role='button' onClick={handleLogout}> Log out </Link>
+                                    </div>
+                                </div>
+                            </form>
+                        }
                     </div>
                 </div>
             </nav>
@@ -43,4 +69,4 @@ const NavBar = (props) => {
     )
 }
 
-export default NavBar
+export default NavBar;

@@ -18,7 +18,7 @@ router.post('/createuser', [
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     success = false;
-    return res.status(500).json({success , error: errors.array()});
+    return res.status(500).json({ success, error: errors.array() });
   }
 
 
@@ -27,7 +27,7 @@ router.post('/createuser', [
     let user = await User.findOne({ email: req.body.email });
     if (user) {
       success = false;
-      return res.status(400).json({ success , error: "Sorry, User with this email already exists." })
+      return res.status(400).json({ success, error: "Sorry, User with this email already exists." })
     }
     // if no user with same email exists then create user with the given email and details
     // Encrypting the password using bcryptjs package
@@ -52,12 +52,12 @@ router.post('/createuser', [
     // res.json(user);
     // sending auth token as response
     success = true;
-    return res.json({success , authToken });
+    return res.json({ success, authToken });
 
   } catch (error) {
     console.error(error.message);
     success = false;
-    return res.status(500).json({success , error:"Internal Server Error"});
+    return res.status(500).json({ success, error: "Internal Server Error" });
   }
 })
 
@@ -70,8 +70,8 @@ router.post('/login', [
   // if there are errors, return bad request and the errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    success=false;
-    return res.status(400).json({ success ,  error: errors.array() });
+    success = false;
+    return res.status(400).json({ success, error: errors.array() });
   }
 
   const { email, password } = req.body;
@@ -80,7 +80,7 @@ router.post('/login', [
     // if no user exists then return error
     if (!user) {
       success = false;
-      return res.status(400).json({ success , error: "Invalid credentials." });
+      return res.status(400).json({ success, error: "Invalid credentials." });
     }
     // if user with given email exists then match the corresponding password with entered one
     const passwordCompare = await bcrypt.compare(password, user.password);
@@ -88,7 +88,7 @@ router.post('/login', [
     // if password doesnot match, return error
     if (!passwordCompare) {
       success = false;
-      return res.status(400).json({ success , error: "Invalid credentials." });
+      return res.status(400).json({ success, error: "Invalid credentials." });
     }
 
     // if password matches, send the data
@@ -101,17 +101,17 @@ router.post('/login', [
     const authToken = jwt.sign(data, JWT_SECRET);
     // sending auth token of corresponding user as response
     success = true;
-    res.json({ success , authToken });
+    res.json({ success, authToken });
 
   } catch (error) {
     console.error(error.message);
     success = false;
-    return res.status(500).json({success , error:"Internal Server Error"});  
+    return res.status(500).json({ success, error: "Internal Server Error" });
   }
 });
 
 // ENDPOINT 3: Get logged in User details : POST "/api/auth/getuser". Login required
-router.post('/getuser', fetchUser ,  async (req, res) => {
+router.post('/getuser', fetchUser, async (req, res) => {
   try {
     let userId = req.user.id;
     // find the user with corresponding user id and select all the data feilds to send, except the password feild.
@@ -120,7 +120,37 @@ router.post('/getuser', fetchUser ,  async (req, res) => {
   } catch (error) {
     console.error(error.message);
     success = false;
-    return res.status(500).json({success , error:"Internal Server Error"});  }
+    return res.status(500).json({ success, error: "Internal Server Error" });
+  }
+})
+
+// ENDPOINT 4: Edit logged in user details : PUT "/api/auth/editUser". Login required
+router.put('/editUser/:id', [
+  body('name', 'Name must consists of minimum 2 characters').isLength({ min: 2 }),
+  body('email', 'Enter a valid Email').isEmail(),
+], fetchUser, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    success = false;
+    return res.status(400).json({ success, error: errors.array() });
+  }
+  const { name, email } = req.body;
+
+  try {
+    let newdet = {};
+    if (name) { newdet.name = name; }
+    if (email) { newdet.email = email }
+    let userId = req.user.id;
+    // find the user with corresponding user id and select all the data feilds to send, except the password feild.
+    user = await User.findByIdAndUpdate(req.params.id, { $set: newdet }, { new: true });
+    success = true
+    res.json({ success, user });
+  }
+  catch (error) {
+    console.error(error.message);
+    success = false;
+    return res.status(500).json({ success, error: "Internal Server Error" });
+  }
 })
 
 module.exports = router;
