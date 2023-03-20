@@ -36,7 +36,7 @@ export default function Addnote(props) {
                         <label htmlFor="tag" className="form-label">Tag</label>
                         <input type="text" className="form-control" id="tag" name="tag" placeholder="Note tag" value={note.tag} onChange={onchange} />
                     </div>
-                    <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary my-3" onClick={handleClick}>Add</button>
+                    <button disabled={note.title.length<5 || note.description.length<5} type="submit" className='btn btn-primary my-3 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} onClick={handleClick}>Add</button>
                 </form>
             </div>
         </div>

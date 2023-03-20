@@ -4,7 +4,7 @@ import UserContext from '../context/user/userContext';
 
 const NavBar = (props) => {
     const context = useContext(UserContext);
-    const {details , getUserDetails} = context;
+    const {details} = context;
 
     let location = useLocation();
     let navigate = useNavigate();
@@ -14,16 +14,6 @@ const NavBar = (props) => {
         props.showAlert('success', 'Logged Out successfully!');
     }
 
-    const handleAccount = () => {
-        getUserDetails(localStorage.getItem('token'));
-    }
-
-    // Jugaad 
-    useEffect(() => {
-        getUserDetails(localStorage.getItem('token'));
-    }, []);
-    // --- 
-    
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -43,8 +33,8 @@ const NavBar = (props) => {
                         </ul>
                         {!localStorage.getItem('token') ?
                             <form className="d-flex">
-                                <Link className='btn btn-primary mx-2' to="/Login" role='button'> Login </Link>
-                                <Link className='btn btn-primary mx-2' to="/Signup" role='button'> Signup </Link>
+                                <Link className='btn btn-primary mx-2 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} to="/Login" role='button'> Login </Link>
+                                <Link className='btn btn-primary mx-2 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} to="/Signup" role='button'> Signup </Link>
                             </form>
                         :   <form className="d-flex mx-2">
                                 <div className="btn-group">
@@ -53,11 +43,11 @@ const NavBar = (props) => {
                                         <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" className="rounded-circle" style={{width : "40px"}} alt="Avatar"></img>
                                     </button>
                                     <div className="dropdown-menu dropdown-menu-end">
-                                        <Link className="dropdown-item" aria-current="page" to="/Account" onClick={handleAccount}>My Account</Link>
+                                        <Link className="dropdown-item" aria-current="page" to="/Account">My Account</Link>
                                         <a className="dropdown-item" href="/">Another action</a>
                                         <a className="dropdown-item" href="/">Something else here</a>
                                         <div className="dropdown-divider"></div>
-                                        <Link className='btn btn-primary mx-2' to="/Login" role='button' onClick={handleLogout}> Log out </Link>
+                                        <Link className='btn btn-primary mx-2 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} to="/Login" role='button' onClick={handleLogout}> Log out </Link>
                                     </div>
                                 </div>
                             </form>

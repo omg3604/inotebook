@@ -71,8 +71,8 @@ export default function Notes(props) {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onClick={handleClick} type="button" className="btn btn-primary">Save changes</button>
+                            <button ref={refClose} type="button" className='btn btn-secondary btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} data-bs-dismiss="modal">Close</button>
+                            <button onClick={handleClick} type="button" className='btn btn-primary btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Save changes</button>
                         </div>
                     </div>
                 </div>

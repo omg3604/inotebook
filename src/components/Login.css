@@ -1,0 +1,25 @@
+
+@media (min-width: 550px) and (max-width: 750px) {
+  html,
+  body,
+  .intro {
+    height: 550px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  .intro {
+    height: 550px;
+  }
+}
+
+a.link {
+  font-size: .875rem;
+  color: #6582B0;
+}
+a.link:hover, 
+a.link:active {
+  color: #426193;
+}

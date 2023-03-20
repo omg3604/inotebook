@@ -38,6 +38,7 @@ const UserState = (props) => {
             },
             body: JSON.stringify({name , email}), // body data type must match "Content-Type" header
         });
+        const json = await response.json();
         setDetails({id:details.id , name:name , email:email , date:details.date});
         getUserDetails(localStorage.getItem('token'));
     }

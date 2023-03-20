@@ -1,12 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../context/user/userContext';
+import './Login.css';
 
 const Login = (props) => {
 
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     //const [email, setEmail] = useState("");
     //const [password, setPassword] = useState("");
+
+    // For updating the details of user on account section and navbar upon new login.
+    const context = useContext(UserContext);
+    const { details, getUserDetails } = context;
 
     let navigate = useNavigate();
 
@@ -44,6 +50,7 @@ const Login = (props) => {
             console.log("the auth token is : ", localStorage.getItem('token'));
             navigate("/");
             props.showAlert("success", "Logged In successfully");
+            getUserDetails(localStorage.getItem('token')); // for updating user name on the namvbar and account section
         }
         else {
             // Login Unsuccessfull
@@ -58,8 +65,59 @@ const Login = (props) => {
     }
 
     return (
-        <div className='container my-5'>
-            <div className="container my-5">
+        <div className='container my-4'>
+            <section className="intro">
+                <div className="bg-image h-100">
+                    <div className="mask d-flex align-items-center h-100" style={{backgroundColor: "#f3f2f2"}}>
+                        <div className="container">
+                            <div className="row d-flex justify-content-center align-items-center">
+                                <div className="col-12 col-lg-9 col-xl-8">
+                                    <div className="card" style={{borderRadius: "1rem"}}>
+                                        <div className="row g-0">
+                                            <div className="col-md-4 d-none d-md-block">
+                                                <img
+                                                    src="https://mdbootstrap.com/img/Photos/Others/sidenav2.jpg"
+                                                    alt="login form"
+                                                    className="img-fluid" style={{borderTopLeftRadius: "1rem" , borderBottomLeftRadius: "1rem"}}
+                                                />
+                                            </div>
+                                            <div className="col-md-8 d-flex align-items-center">
+                                                <div className="card-body py-5 px-4 p-md-5">
+
+                                                    <form onSubmit={handleSubmit}>
+                                                        <h4 className="fw-bold mb-4" style={{color: "#92aad0"}}>Log in to your account</h4>
+                                                        <p className="mb-4" style={{color: "#45526e"}}>To log in, please fill in these text fiels with your e-mail address and password.</p>
+
+                                                        <div className="form-outline mb-4">
+                                                            <input type="email" className="form-control mb-1" id="email" name="email" aria-describedby="emailHelp" placeholder='Enter Email' value={credentials.email} onChange={onchange} required />
+                                                            <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                            <label className="form-label" htmlFor="email">Email address</label>
+                                                        </div>
+
+                                                        <div className="form-outline mb-3">
+                                                            <input type="password" className="form-control mb-1" id="password" name='password' placeholder='Enter Password' value={credentials.password} onChange={onchange} required />
+                                                            <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                            <label className="form-label" htmlFor="password">Password</label>
+                                                        </div>
+
+                                                        <div className="d-flex justify-content-end">
+                                                            <button className="btn btn-primary btn-rounded " type="submit" style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Log in</button>
+                                                        </div>
+                                                        {/* <hr/>
+                                                            <a className="link float-end" href="#!">Forgot password? Click here.</a> */}
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* <div className="container my-5">
                 <div className="card text-black" style={{ borderRadius: "25px" }}>
                     <div className="card-body p-md-3">
                         <div className="row justify-content-center">
@@ -74,9 +132,6 @@ const Login = (props) => {
                                 <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
                                 <form className="mx-1 mx-md-3" onSubmit={handleSubmit}>
-
-
-
                                     <div className="d-flex flex-row align-items-center mb-4">
                                         <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <label className="form-label me-3" htmlFor="email">Email</label>
@@ -104,7 +159,7 @@ const Login = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
