@@ -23,6 +23,7 @@ const Account = (props) => {
         //console.log("Updating the note...", note);
         refClose.current.click();   // for closing the modal after clicking save changes button
         //props.showAlert("success" , "User Data updated successfully");
+        props.showAlert('success' , "User Details Updated Successfully !");
     }
 
     useEffect(() => {

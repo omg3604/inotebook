@@ -2,10 +2,20 @@ import React from 'react';
 import { useContext, useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import noteContext from '../context/notes/noteContext';
+import userContext from '../context/user/userContext';
 import AddNote from './AddNote';
 import NoteItem from './NoteItem';
 
 export default function Notes(props) {
+
+    // For maintaining the user data on the navbar upon reload also.
+    const Ucontext = useContext(userContext);
+    const {getUserDetails} = Ucontext;
+    useEffect(() => {
+        getUserDetails(localStorage.getItem('token'));
+    }, [])
+    
+
     const context = useContext(noteContext);
     let navigate = useNavigate();
     const { notes, getNotes , editNote} = context;
