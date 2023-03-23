@@ -45,11 +45,12 @@ const Signup = (props) => {
 
     return (
         <div>
-            <div className="container my-5">
-                <div className="card text-black" style={{ borderRadius: "25px" }}>
+            <div className="container my-5" >
+                <hr/>
+                <div className="card text-black" style={{borderColor:"white"}}>
                     <div className="card-body p-md-3">
                         <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3">
+                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3 " style={{backgroundColor:"#eceaf7" , borderRadius: "20px"}}>
 
                                 <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
@@ -88,7 +89,7 @@ const Signup = (props) => {
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" className="btn btn-outline-primary">Submit</button>
+                                        <button type="submit" className='btn btn-primary mx-2 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Submit</button>
                                     </div>
 
                                 </form>
@@ -103,6 +104,7 @@ const Signup = (props) => {
                         </div>
                     </div>
                 </div>
+                <hr/>
             </div>
         </div>
     )

@@ -18,7 +18,7 @@ const NavBar = (props) => {
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid mx-3">
-                    <Link className="navbar-brand" to="/">iNotebook</Link>
+                    <Link className="navbar-brand" style={{color: "#403586"}} to="/">iNotebook</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

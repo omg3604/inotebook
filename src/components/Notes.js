@@ -21,12 +21,7 @@ export default function Notes(props) {
     const { notes, getNotes , editNote} = context;
     // to display all saved notes of the user.
     useEffect(() => {
-        if(localStorage.getItem('token')){
-            getNotes();
-        }
-        else{
-            navigate('/Login');
-        }
+        getNotes();
     }, [])
 
     const ref = useRef(null);

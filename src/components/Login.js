@@ -68,7 +68,7 @@ const Login = (props) => {
         <div className='container my-4'>
             <section className="intro">
                 <div className="bg-image h-100">
-                    <div className="mask d-flex align-items-center h-100" style={{backgroundColor: "#f3f2f2"}}>
+                    <div className="mask d-flex align-items-center h-100">
                         <div className="container">
                             <div className="row d-flex justify-content-center align-items-center">
                                 <div className="col-12 col-lg-9 col-xl-8">
