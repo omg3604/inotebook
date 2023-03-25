@@ -66,7 +66,7 @@ const Account = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="container mb-5 pb-5">
                 <div className="row d-flex justify-content-center">
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div className="box">

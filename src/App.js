@@ -15,6 +15,7 @@ import {
 import NoteState from './context/notes/NoteState';
 import UserState from './context/user/UserState';
 import Alert from './components/Alert';
+import Footer from './components/Footer';
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -43,6 +44,7 @@ function App() {
                 <Route exact path='/Account' element={<Account showAlert={showAlert}></Account>}></Route>
               </Routes>
             </div>
+            <Footer></Footer>
           </div>
         </Router>
       </NoteState>
