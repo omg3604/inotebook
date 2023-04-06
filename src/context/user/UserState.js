@@ -8,6 +8,7 @@ const UserState = (props) => {
 
     // Get user details
     const getUserDetails = async (token) => {
+        //console.log("the token is", token);
         const response = await fetch(`${host}/api/auth/getuser`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -15,6 +16,7 @@ const UserState = (props) => {
                 "auth-token": token
             }
         });
+        //console.log(response);
         const json = await response.json();
         // console.log("getting user details");
         //console.log(json);
@@ -43,8 +45,21 @@ const UserState = (props) => {
         getUserDetails(localStorage.getItem('token'));
     }
 
+    // Delete User Account
+    const deleteUser = async(userid) => {
+        const response = await fetch(`${host}/api/auth/deleteUser/${userid}` , {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        console.log(json);
+    }
+
     return (
-        <UserContext.Provider value={{ details , getUserDetails , editUser}}>
+        <UserContext.Provider value={{ details , getUserDetails , editUser , deleteUser}}>
             {props.children}
         </UserContext.Provider>
     )

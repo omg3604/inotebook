@@ -3,13 +3,13 @@ import React from 'react'
 const Footer = () => {
     return (
         <div>
-            <footer class="footer bg-light text-dark">
-                <div class="container pt-2">
-                    <div class="row">
-                        <div class="col-md-6 text-end">
+            <footer className="footer bg-light text-dark">
+                <div className="container pt-2">
+                    <div className="row">
+                        <div className="col-md-6 text-end">
                             <p>&copy; 2023 iNoteBook</p>
                         </div>
-                        <div class="col-md-6">
+                        <div className="col-md-6">
                             <p>Made with &hearts; by Om Golhani</p>
                         </div>
                     </div>
@@ -19,4 +19,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;

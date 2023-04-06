@@ -10,13 +10,17 @@ export default function Addnote(props) {
 
     const handleClick = (e) => {
         e.preventDefault();
-        addNote(note.title, note.description, note.tag);
+        addNote(note.title, note.description , capitalizeFirstLetter(note.tag));
         props.showAlert("success", "Note added Successfully!.")
         setNote({ title: "", description: "", tag: "" });
     }
 
     const onchange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
+    }
+
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     return (
@@ -49,7 +53,6 @@ export default function Addnote(props) {
 
                 </form>
             </div>
-            <hr/>
             {/* <div className='container my-3'>
                 <h2>Add a Note</h2>
                 <form className='container '>

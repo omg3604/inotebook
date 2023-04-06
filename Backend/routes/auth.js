@@ -9,6 +9,7 @@ const fetchUser = require('../middleware/fetchUser');
 const JWT_SECRET = "Omis&agood&boy";
 
 // ENDPOINT1:  Create a user using : POST "/api/auth/createuser". No login required
+
 router.post('/createuser', [
   body('name', 'Name must consists of minimum 2 characters').isLength({ min: 2 }),
   body('email', 'Enter a valid Email').isEmail(),
@@ -62,6 +63,7 @@ router.post('/createuser', [
 })
 
 //ENDPOINT2: Authenticate a user using : POST "/api/auth/login". No login required
+
 router.post('/login', [
   body('email', 'Enter a valid Email').isEmail(),
   body('password', 'Password cannot be blank. ').exists(),
@@ -111,6 +113,7 @@ router.post('/login', [
 });
 
 // ENDPOINT 3: Get logged in User details : POST "/api/auth/getuser". Login required
+
 router.post('/getuser', fetchUser, async (req, res) => {
   try {
     let userId = req.user.id;
@@ -125,6 +128,7 @@ router.post('/getuser', fetchUser, async (req, res) => {
 })
 
 // ENDPOINT 4: Edit logged in user details : PUT "/api/auth/editUser". Login required
+
 router.put('/editUser/:id', [
   body('name', 'Name must consists of minimum 2 characters').isLength({ min: 2 }),
   body('email', 'Enter a valid Email').isEmail(),
@@ -140,11 +144,31 @@ router.put('/editUser/:id', [
     let newdet = {};
     if (name) { newdet.name = name; }
     if (email) { newdet.email = email }
-    let userId = req.user.id;
-    // find the user with corresponding user id and select all the data feilds to send, except the password feild.
+    // find the user with corresponding user id and update all the data feilds.
     user = await User.findByIdAndUpdate(req.params.id, { $set: newdet }, { new: true });
     success = true
     res.json({ success, user });
+  }
+  catch (error) {
+    console.error(error.message);
+    success = false;
+    return res.status(500).json({ success, error: "Internal Server Error" });
+  }
+})
+
+// ENDPOINT 5: Delete logged in User : DEL "/api/auth/deleteUser". Login Required
+
+router.delete('/deleteUser/:id', fetchUser, async (req, res) => {
+  try {
+    // find the user with corresponding user id and delete that user.
+    let user = await User.findById(req.params.id);
+    if (!user) {
+      success = false;
+      return res.status(500).json({ success, error: "No such User exists." });
+    }
+    user = await User.findByIdAndDelete(req.params.id);
+    success = true;
+    res.send({ success });
   }
   catch (error) {
     console.error(error.message);

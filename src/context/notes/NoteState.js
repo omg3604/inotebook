@@ -89,8 +89,38 @@ const NoteState = (props) => {
         getNotes();         // for fetching all the updated notes from server to display to client.
     }
 
+    // Get all notes by Tag
+    const getNotesByTag = async (tag) => {
+        // API Call
+        const response = await fetch(`${host}/api/notes/fetchNotesByTag`, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('token')
+            },
+            body: JSON.stringify({tag}),
+        });
+        const json = await response.json();
+        // console.log("getting all notes");
+        console.log(json);
+        setNotes(json);
+    }
+
+    // Delete all notes of a User
+    const deleteAllNotes = async () => {
+        const response = await fetch(`${host}/api/notes/deleteAllNotes`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('token')
+            }
+        })
+        const json = await response.json();
+        console.log(json);
+    }
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote , getNotes }}> 
+        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote , getNotes , getNotesByTag , deleteAllNotes}}> 
             {props.children}
         </NoteContext.Provider>
     )

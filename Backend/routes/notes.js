@@ -122,4 +122,31 @@ router.delete('/deleteNote/:id', fetchUser, async (req, res) => {
     }
 })
 
+// ENDPOINT 5 : Get all the Notes by Tag name : POST "/api/notes/fetchNotesByTag". Login required
+router.post('/fetchNotesByTag', fetchUser, async (req, res) => {
+    const { tag } = req.body;
+    try {
+        const notes = await Note.find({ user: req.user.id });
+        let taggedNotes = notes.filter(note => note.tag === tag);
+        res.json(taggedNotes);
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).send("Internal Server Error");
+    }
+})
+
+// ENDPOINT 6 : Delete all the notes of a user : DEL "/api/notes/deleteAllNotes". Login required.
+router.delete('/deleteAllNotes', fetchUser, async (req, res) => {
+    try {
+        // find all the notes of User and delete them from the database.
+        const notes = await Note.deleteMany({user: req.user.id});
+        success = true;
+        res.json({success});
+    }
+    catch (error) {
+        console.error(error.message);
+        return res.status(500).send("Internal Server Error");
+    }
+})
+
 module.exports = router;
