@@ -4,17 +4,20 @@
   "description": "iNotebook : your Cloud Notebook",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.10.0"
+    "mongoose": "^6.10.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

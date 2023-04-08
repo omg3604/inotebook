@@ -3,7 +3,7 @@ import { useState } from "react";
 import UserContext from "./userContext";
 
 const UserState = (props) => {
-    const host = "http://localhost:5000";
+    const host = "https://odd-mite-shoe.cyclic.app";
     const [details, setDetails] = useState({_id:"" , name:"" , email:"" , date:""})
 
     // Get user details
