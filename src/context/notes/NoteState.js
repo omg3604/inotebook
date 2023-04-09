@@ -7,10 +7,12 @@ const NoteState = (props) => {
     const notesInitial = [];
 
     const [notes, setNotes] = useState(notesInitial);
+    const [noteLoad , setnoteLoad] = useState(false);
 
     // Get all notes
     const getNotes = async () => {
         // API Call
+        setnoteLoad(true);
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -22,12 +24,14 @@ const NoteState = (props) => {
         // console.log("getting all notes");
         console.log(json);
         setNotes(json);
+        setnoteLoad(false);
     }
 
     // Add a note
     const addNote = async (title, description, tag) => {
         //console.log("adding a new note!");
         // API Call
+        setnoteLoad(true);
         const response = await fetch(`${host}/api/notes/addNotes`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -39,10 +43,12 @@ const NoteState = (props) => {
         //console.log(JSON.stringify({title , description , tag}));
         const newnote = await response.json();
         setNotes(notes.concat(newnote));
+        setnoteLoad(false);
     }
 
     // Delete a note
     const deleteNote = async (id) => {
+        setnoteLoad(true);
         const response = await fetch(`${host}/api/notes/deleteNote/${id}`, {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -59,11 +65,13 @@ const NoteState = (props) => {
             return note._id !== id;
         });
         setNotes(newnotes);
+        setnoteLoad(false);
     }
 
     // Edit a note
     const editNote = async (id, title, description, tag) => {
         // API Call
+        setnoteLoad(true);
         const response = await fetch(`${host}/api/notes/updateNote/${id}`, {
             method: "PUT", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -87,11 +95,13 @@ const NoteState = (props) => {
         //console.log(notes);
         setNotes(notes);            
         getNotes();         // for fetching all the updated notes from server to display to client.
+        setnoteLoad(false);
     }
 
     // Get all notes by Tag
     const getNotesByTag = async (tag) => {
         // API Call
+        setnoteLoad(true);
         const response = await fetch(`${host}/api/notes/fetchNotesByTag`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -104,6 +114,7 @@ const NoteState = (props) => {
         // console.log("getting all notes");
         console.log(json);
         setNotes(json);
+        setnoteLoad(false);
     }
 
     // Delete all notes of a User
@@ -120,7 +131,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote , getNotes , getNotesByTag , deleteAllNotes}}> 
+        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote , getNotes , getNotesByTag , deleteAllNotes , noteLoad}}> 
             {props.children}
         </NoteContext.Provider>
     )

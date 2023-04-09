@@ -6,9 +6,12 @@ const UserState = (props) => {
     const host = "https://odd-mite-shoe.cyclic.app";
     const [details, setDetails] = useState({_id:"" , name:"" , email:"" , date:""})
 
+    const [userLoad , setuserLoad] = useState(false);
+
     // Get user details
     const getUserDetails = async (token) => {
         //console.log("the token is", token);
+        setuserLoad(true);
         const response = await fetch(`${host}/api/auth/getuser`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -26,12 +29,14 @@ const UserState = (props) => {
             email : json.email,
             date : json.date
         })
+        setuserLoad(false);
         //console.log(details);
     }
 
     // Edit User Details
     const editUser = async (id , name , email) =>{
         // API Call
+        setuserLoad(true);
         const response = await fetch(`${host}/api/auth/editUser/${id}`, {
             method: "PUT", // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -43,10 +48,12 @@ const UserState = (props) => {
         const json = await response.json();
         setDetails({id:details.id , name:name , email:email , date:details.date});
         getUserDetails(localStorage.getItem('token'));
+        setuserLoad(false);
     }
 
     // Delete User Account
     const deleteUser = async(userid) => {
+        setuserLoad(true);
         const response = await fetch(`${host}/api/auth/deleteUser/${userid}` , {
             method: "DELETE",
             headers: {
@@ -56,10 +63,11 @@ const UserState = (props) => {
         });
         const json = await response.json();
         console.log(json);
+        setuserLoad(false);
     }
 
     return (
-        <UserContext.Provider value={{ details , getUserDetails , editUser , deleteUser}}>
+        <UserContext.Provider value={{ details , getUserDetails , editUser , deleteUser , userLoad}}>
             {props.children}
         </UserContext.Provider>
     )

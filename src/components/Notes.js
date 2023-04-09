@@ -5,8 +5,10 @@ import noteContext from '../context/notes/noteContext';
 import userContext from '../context/user/userContext';
 import AddNote from './AddNote';
 import NoteItem from './NoteItem';
+import Spinner from './Spinner';
 
 export default function Notes(props) {
+
 
     // For maintaining the user data on the navbar upon reload also.
     const Ucontext = useContext(userContext);
@@ -18,7 +20,8 @@ export default function Notes(props) {
 
     const context = useContext(noteContext);
     let navigate = useNavigate();
-    const { notes, getNotes, editNote, getNotesByTag } = context;
+    const { notes, getNotes, editNote, getNotesByTag , noteLoad} = context;
+
     // to display all saved notes of the user.
     useEffect(() => {
         getNotes();
@@ -54,7 +57,7 @@ export default function Notes(props) {
         console.log(e.target.value);
     }
 
-
+    // if (noteLoad) return <Spinner/>;
     return (
         <>
             <AddNote showAlert={props.showAlert} ></AddNote>
@@ -106,8 +109,9 @@ export default function Notes(props) {
                     </div>
                 </div>
                 <hr></hr>
-                <h5>{notes.length === 0 && 'No saved notes found.'}</h5>
-                {notes.map((note) => {
+                {noteLoad && <Spinner/>}
+                {!noteLoad &&  <h5>{notes.length === 0 && 'No saved notes found.'}</h5>}
+                {!noteLoad && notes.map((note) => {
                     return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert}></NoteItem>;
                 }
                 )}

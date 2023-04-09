@@ -20,13 +20,15 @@ import Footer from './components/Footer';
 function App() {
   const [alert, setAlert] = useState(null);
   const showAlert = (type, message) => {
-    setAlert({
-      type: type,
-      msg: message
-    })
     setTimeout(() => {
-      setAlert(null);
-    }, 4000);
+      setAlert({
+        type: type,
+        msg: message
+      })
+      setTimeout(() => {
+        setAlert(null);
+      }, 3000);
+    }, 1000);
   }
   return (
     <UserState>

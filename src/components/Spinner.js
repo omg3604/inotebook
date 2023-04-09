@@ -8,4 +8,4 @@ export default class Spinner extends Component {
       </div>
     )
   }
-}
+} 

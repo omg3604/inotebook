@@ -3,10 +3,11 @@ import './Account.css'
 import { useNavigate } from 'react-router-dom';
 import userContext from '../context/user/userContext';
 import noteContext from '../context/notes/noteContext';
+import Spinner from './Spinner';
 
 const Account = (props) => {
     const Ucontext = useContext(userContext);
-    const { details, editUser, getUserDetails , deleteUser} = Ucontext;
+    const { details, editUser, getUserDetails , deleteUser , userLoad} = Ucontext;
     const { _id, name, email, date } = details;
 
     const Ncontext = useContext(noteContext);
@@ -62,7 +63,7 @@ const Account = (props) => {
         //redirected to homepage.
         navigate('/');
     }
-
+    if(userLoad)    return <Spinner/>;
     return (
         <div>
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
