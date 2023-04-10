@@ -67,7 +67,7 @@ const UserState = (props) => {
     }
 
     return (
-        <UserContext.Provider value={{ details , getUserDetails , editUser , deleteUser , userLoad}}>
+        <UserContext.Provider value={{ details , getUserDetails , editUser , deleteUser , userLoad , setuserLoad}}>
             {props.children}
         </UserContext.Provider>
     )

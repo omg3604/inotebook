@@ -1,17 +1,23 @@
-import React, { useContext , useEffect } from 'react';
+import React, { useContext , useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import UserContext from '../context/user/userContext';
+import Spinner from './Spinner.js';
 
 const NavBar = (props) => {
     const context = useContext(UserContext);
-    const {details} = context;
+    const {details , userLoad , setuserLoad} = context;
 
     let location = useLocation();
     let navigate = useNavigate();
+
     const handleLogout = () => {
+        setuserLoad(true);
         localStorage.removeItem('token');
         navigate('/Login');
         props.showAlert('success', 'Logged Out successfully!');
+        setTimeout(() => {
+            setuserLoad(false);
+        }, 1000);
     }
 
     return (

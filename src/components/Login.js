@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/user/userContext';
 import './Login.css';
+import Spinner from './Spinner.js';
 
 const Login = (props) => {
 
@@ -12,7 +13,7 @@ const Login = (props) => {
 
     // For updating the details of user on account section and navbar upon new login.
     const context = useContext(UserContext);
-    const { details, getUserDetails } = context;
+    const { details, getUserDetails , userLoad , setuserLoad} = context;
 
     let navigate = useNavigate();
 
@@ -30,6 +31,8 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setuserLoad(true);
+
         // API Call
         const response = await fetch(`https://odd-mite-shoe.cyclic.app/api/auth/login`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -58,10 +61,14 @@ const Login = (props) => {
             props.showAlert("warning", json.error);
         }
 
-
+        setuserLoad(false);
         setCredentials({ email: "", password: "" });
         // setEmail("");
         // setPassword("");
+    }
+
+    if (userLoad){
+        return <Spinner/>;
     }
 
     return (

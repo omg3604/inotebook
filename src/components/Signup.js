@@ -1,10 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../context/user/userContext';
+import Spinner from './Spinner';
 
 const Signup = (props) => {
 
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
+
+    const context = useContext(UserContext);
+    const {userLoad , setuserLoad} = context;
     
     let navigate = useNavigate();
 
@@ -14,9 +19,11 @@ const Signup = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setuserLoad(true);
+
         // API Call
         const {name , email , password } = credentials;
-        const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+        const response = await fetch(`https://odd-mite-shoe.cyclic.app/api/auth/createuser`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
                 "Content-Type": "application/json",
@@ -32,7 +39,7 @@ const Signup = (props) => {
             // alert("Logged in Successfully");
             // localStorage.setItem('token', json.authtoken);
             navigate("/Login");
-            props.showAlert("success" , "Signup done successfully");
+            props.showAlert("success" , "Signup done successfully , Login in your account after filling the following form.");
         }
         else {
             // Login Unsuccessfull
@@ -41,6 +48,11 @@ const Signup = (props) => {
         }
 
         setCredentials({ name: "", email: "", password: "", cpassword: "" });
+        setuserLoad(false);
+    }
+
+    if(userLoad){
+        return <Spinner/>;
     }
 
     return (
