@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import noteContext from '../context/notes/noteContext';
+import './NoteItem.css'
 
 export default function NoteItem(props) {
     const context = useContext(noteContext);
