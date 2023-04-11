@@ -128,7 +128,7 @@ const Account = (props) => {
                             <div className="box-icon">
                                 <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" className='image-fluid' style={{ maxWidth: "100%", maxHeight: "100%" }}></img>
                             </div>
-                            <i className="fa-solid fa-pen-to-square align-item-center" onClick={() => { updateUser(newdata) }}></i>
+                            <i className="fa-solid fa-pen-to-square align-item-center editIcon p-2" onClick={() => { updateUser(newdata) }}></i>
                             <div className="info">
                                 <h4 className="text-center">{name}</h4>
                             </div>

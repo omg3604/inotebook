@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContext, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 export default function Addnote(props) {
     const context = useContext(noteContext);
@@ -13,14 +14,45 @@ export default function Addnote(props) {
         addNote(note.title, note.description , capitalizeFirstLetter(note.tag));
         props.showAlert("success", "Note added Successfully!.")
         setNote({ title: "", description: "", tag: "" });
+        resetTranscript();    
     }
 
     const onchange = (e) => {
-        setNote({ ...note, [e.target.name]: e.target.value });
+        if(listening){
+            setNote({ ...note , description : transcript});
+        }
+        else{ 
+            setNote({ ...note, [e.target.name]: e.target.value });
+        }
     }
 
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Speech to text
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    
+    if (!browserSupportsSpeechRecognition) {
+        return <span>Browser doesn't support speech recognition.</span>;
+    }
+
+    const listenContinuously = () => {
+        SpeechRecognition.startListening({
+            continuous: true,
+            language: 'en-GB',
+        });
+    };
+
+    const stopListen = () => {
+        SpeechRecognition.stopListening();
+        setNote({ ...note , description : transcript });
     }
 
     return (
@@ -37,8 +69,19 @@ export default function Addnote(props) {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label h5" htmlFor="description">Description</label>
-                        <input className="form-control" id="description" type="text" name="description" placeholder="description" style={{height: "5rem"}} data-sb-validations="required" value={note.description} onChange={onchange}></input>
+                        <div className='d-flex justify-content-between align-items-center'>
+                            <label className="form-label h5" htmlFor="description">Description</label>
+                            <div className='d-flex align-items-center'>
+                                {listening && <i class="fa-solid fa-microphone fa-fade fa-xl" style={{color: "#bf1212"}}></i>}
+                                {listening && <p className='h5 mx-2 mt-2'>listening....</p>}
+                            </div>
+                            <div className='d-flex justify-content-between align-items-center'>
+                                <p className='mt-3'><strong>Mic : </strong></p>
+                                <i className="fa-solid fa-circle-play fa-2xl  mx-2 my-2" onClick={listenContinuously} style={{color: "#3B71CA"}}></i>
+                                <i className="fa-solid fa-circle-stop fa-2xl  mx-2 my-2" onClick={stopListen} style={{color: "#DC4C64"}}></i>
+                            </div>
+                        </div>
+                        <input className="form-control" id="description" type="text" name="description" placeholder="description" style={{height: "5rem"}} data-sb-validations="required" value={note.description || transcript} onChange={onchange}></input>
                         <div className="invalid-feedback" data-sb-feedback="description:required">Description is required.</div>
                     </div>
 
