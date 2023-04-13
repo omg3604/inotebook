@@ -53,6 +53,7 @@ export default function Addnote(props) {
     const stopListen = () => {
         SpeechRecognition.stopListening();
         setNote({ ...note , description : transcript });
+        resetTranscript();
     }
 
     return (
