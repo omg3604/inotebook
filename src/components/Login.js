@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/user/userContext';
 import './Login.css';
 import Spinner from './Spinner.js';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
 
@@ -110,8 +111,9 @@ const Login = (props) => {
                                                         <div className="d-flex justify-content-end">
                                                             <button className="btn btn-primary btn-rounded " type="submit" style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Log in</button>
                                                         </div>
-                                                        {/* <hr/>
-                                                            <a className="link float-end" href="#!">Forgot password? Click here.</a> */}
+                                                        <hr/>
+                                                            <Link className="link float-start" to="/SignUp">New User? Create Account!</Link>
+                                                            <Link className="link float-end" to="/">Forgot password? Click here.</Link>
                                                     </form>
 
                                                 </div>

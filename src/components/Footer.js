@@ -1,8 +1,9 @@
 import React from 'react'
+import './Footer.css'
 
 const Footer = () => {
     return (
-        <footer className="footer bg-light text-dark fixed-bottom">
+        <footer className="footer text-dark ">
             <div className="container pt-2">
                 <div className="row">
                     <div className="col-md-6 text-end">

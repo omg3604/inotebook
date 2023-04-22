@@ -1,0 +1,35 @@
+.btncss {
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    background-color: #19376D;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+    font-weight: 500;
+}
+
+.btncss:hover {
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);
+    background-color: #19376D;
+}
+
+.rotate {
+    height: 150px;
+    width: 330px;
+    background: #fff;
+    border-radius: 20px;
+    margin: 10px;
+    transition: all ease 0.2s;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    padding-bottom: 10px;
+}
+
+.rotate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+}
