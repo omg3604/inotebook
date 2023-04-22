@@ -73,13 +73,13 @@ const Login = (props) => {
     }
 
     return (
-        <div className='container my-4'>
+        <div className='container my-4 pb-5'>
             <section className="intro">
                 <div className="bg-image h-100">
                     <div className="mask d-flex align-items-center h-100">
                         <div className="container">
                             <div className="row d-flex justify-content-center align-items-center">
-                                <div className="col-12 col-lg-9 col-xl-8">
+                                <div className="col-12 col-lg-10 col-xl-8">
                                     <div className="card" style={{borderRadius: "1rem"}}>
                                         <div className="row g-0">
                                             <div className="col-md-4 d-none d-md-block">
@@ -90,10 +90,10 @@ const Login = (props) => {
                                                 />
                                             </div>
                                             <div className="col-md-8 d-flex align-items-center">
-                                                <div className="card-body py-5 px-4 p-md-5">
+                                                <div className="card-body py-5 px-4 p-md-4">
 
                                                     <form onSubmit={handleSubmit}>
-                                                        <h4 className="fw-bold mb-4" style={{color: "#92aad0"}}>Log in to your account</h4>
+                                                        <h4 className="fw-bold mb-4" style={{color: "#19376D"}}>Log in to your account</h4>
                                                         <p className="mb-4" style={{color: "#45526e"}}>To log in, please fill in these text fiels with your e-mail address and password.</p>
 
                                                         <div className="form-outline mb-4">
@@ -109,13 +109,12 @@ const Login = (props) => {
                                                         </div>
 
                                                         <div className="d-flex justify-content-end">
-                                                            <button className="btn btn-primary btn-rounded " type="submit" style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Log in</button>
+                                                            <button className="btn btn-primary btn-rounded btncss" type="submit">Log in</button>
                                                         </div>
                                                         <hr/>
-                                                            <Link className="link float-start" to="/SignUp">New User? Create Account!</Link>
-                                                            <Link className="link float-end" to="/">Forgot password? Click here.</Link>
+                                                            <Link className="link float-start linkstyle" to="/SignUp">New User? Create Account!</Link>
+                                                            <Link className="link float-end linkstyle" to="/">Forgot password?</Link>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -126,6 +125,7 @@ const Login = (props) => {
                     </div>
                 </div>
             </section>
+            <div className='my-4 text-light'><hr></hr></div>
             {/* <div className="container my-5">
                 <div className="card text-black" style={{ borderRadius: "25px" }}>
                     <div className="card-body p-md-3">

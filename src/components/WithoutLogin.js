@@ -14,12 +14,12 @@ const WithoutLogin = () => {
         </div>
       </div>
 
-      <section className="features my-4 py-4">
+      <section className="features mb-5 pb-5">
         <div className="container">
           <div className="row">
             <div className="col-md-4 rotate">
               <div className="feature-box">
-                <i className="fas fa-rocket fa-3x"></i>
+                <i className="fa-solid fa-rocket fa-3x"></i>
                 <h3>Easy to Use</h3>
                 <p>Our note-making platform is designed to be user-friendly and intuitive.</p>
               </div>
@@ -41,6 +41,9 @@ const WithoutLogin = () => {
           </div>
         </div>
       </section>
+      <div className='my-5'>
+<hr></hr>
+      </div>
     </div>
   )
 }

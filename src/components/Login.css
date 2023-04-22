@@ -15,11 +15,58 @@
   }
 }
 
-a.link {
-  font-size: .875rem;
-  color: #6582B0;
+/* CSS for links */
+.linkstyle {
+  font-size: small;
+  text-decoration: none;
+  display: inline-block;
+  padding: .5em;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
-a.link:hover, 
-a.link:active {
-  color: #426193;
+
+.linkstyle:before,
+.linkstyle:after {
+  position: absolute;
+  content: '';
+  border-bottom: 2px solid #19376D;
+  border-radius: 1em;
+  bottom: .3em;
+  transition: transform .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.linkstyle:before {
+  width: 1em;
+  transform-origin: left;
+}
+
+.linkstyle:after {
+  width: 82%;
+  left: 1em;
+  transform: translateX(110%);
+}
+
+.linkstyle:hover:before {
+  transform: scaleX(0.3);
+}
+
+.linkstyle:hover:after {
+  transform: translateX(0);
+}
+
+/* // CSS for buttons */
+.btncss {
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 500ms ease;
+}
+
+.btncss:hover {
+  -webkit-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  transform: scale(1.15);
 }

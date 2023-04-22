@@ -3,6 +3,7 @@ import { useState , useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/user/userContext';
 import Spinner from './Spinner';
+import './Signup.css'
 
 const Signup = (props) => {
 
@@ -57,14 +58,14 @@ const Signup = (props) => {
 
     return (
         <div>
-            <div className="container my-5" >
+            <div className="container my-5 pb-5" >
                 <hr/>
                 <div className="card text-black" style={{borderColor:"white"}}>
                     <div className="card-body p-md-3">
                         <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3 " style={{backgroundColor:"#eceaf7" , borderRadius: "20px"}}>
+                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3 " style={{backgroundColor:"#A5D7E8" , borderRadius: "20px"}}>
 
-                                <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{color : "#19376D"}}>Sign up</p>
 
                                 <form className="mx-1 mx-md-3" onSubmit={handleSubmit}>
 
@@ -101,7 +102,7 @@ const Signup = (props) => {
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" className='btn btn-primary mx-2 btn-rounded' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}}>Submit</button>
+                                        <button type="submit" className='btn btn-primary mx-2 btn-rounded signbtn'>Submit</button>
                                     </div>
 
                                 </form>
@@ -116,7 +117,7 @@ const Signup = (props) => {
                         </div>
                     </div>
                 </div>
-                <hr/>
+                <hr className='mb-5'></hr>
             </div>
         </div>
     )
