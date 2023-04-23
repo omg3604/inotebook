@@ -63,7 +63,7 @@ const Signup = (props) => {
                 <div className="card text-black" style={{borderColor:"white"}}>
                     <div className="card-body p-md-3">
                         <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3 " style={{backgroundColor:"#A5D7E8" , borderRadius: "20px"}}>
+                            <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 p-3 " style={{backgroundColor:"white" , borderRadius: "20px"}}>
 
                                 <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{color : "#19376D"}}>Sign up</p>
 

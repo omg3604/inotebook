@@ -95,12 +95,12 @@ export default function Notes(props) {
                     </div>
                 </div>
             </div>
-            <div className='row my-5'>
+            <div className='row my-5 py-5'>
                 <div className='d-flex justify-content-between align-items-center'>
-                    <h2>Saved Notes!</h2>
+                    <h2 style={{color: "#19376D"}}>Saved Notes!</h2>
                     <div className='d-flex align-items-center'>
                         <p className='mx-3 my-0'>Search By Tag : </p>
-                        <select className="select me-5 rounded" style={{ backgroundColor: "#92aad0" }} onChange={ontagchange}>
+                        <select className="select me-5 rounded" style={{ backgroundColor: "#19376D" ,color:"white" }} onChange={ontagchange}>
                             <option value="All">All</option>
                             <option value="General">General</option>
                             <option value="Personal">Personal</option>

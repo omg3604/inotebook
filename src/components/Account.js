@@ -124,7 +124,7 @@ const Account = (props) => {
             <div className="container mb-5 pb-5">
                 <div className="row d-flex justify-content-center">
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <div className="box">
+                        <div className="box cardcss my-5">
                             <div className="box-icon">
                                 <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" className='image-fluid' style={{ maxWidth: "100%", maxHeight: "100%" }}></img>
                             </div>
@@ -162,7 +162,7 @@ const Account = (props) => {
                         </div>
                     </div>
                     <div className='container d-flex justify-content-center py-3 my-4'>
-                        <button className='btn btn-outline-danger' onClick={handleDeactivate}> Deactivate Account</button>
+                        <button className='btn btn-danger deactbtn' onClick={handleDeactivate}> Deactivate Account</button>
                     </div>
                 </div>
             </div>

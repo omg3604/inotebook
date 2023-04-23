@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import "./AddNote.css"
 
 export default function Addnote(props) {
     const context = useContext(noteContext);
@@ -59,7 +60,7 @@ export default function Addnote(props) {
     return (
         <div>
             <div className="container my-4">
-                <h2>Add a Note</h2>
+                <h2 style={{color: "#19376D"}}>Add a Note</h2>
                 <hr/>
                 <form id="contactForm" data-sb-form-api-token="API_TOKEN" className='container'>
 
@@ -78,8 +79,8 @@ export default function Addnote(props) {
                             </div>
                             <div className='d-flex justify-content-between align-items-center'>
                                 <p className='mt-3'><strong>Mic : </strong></p>
-                                <i className="fa-solid fa-circle-play fa-2xl  mx-2 my-2" onClick={listenContinuously} style={{color: "#3B71CA"}}></i>
-                                <i className="fa-solid fa-circle-stop fa-2xl  mx-2 my-2" onClick={stopListen} style={{color: "#DC4C64"}}></i>
+                                <i className="fa-solid fa-circle-play fa-2xl  mx-2 my-2 micicon" onClick={listenContinuously} style={{color: "#3B71CA"}}></i>
+                                <i className="fa-solid fa-circle-stop fa-2xl  mx-2 my-2 micicon" onClick={stopListen} style={{color: "#DC4C64"}}></i>
                             </div>
                         </div>
                         <input className="form-control" id="description" type="text" name="description" placeholder="description" style={{height: "5rem"}} data-sb-validations="required" value={note.description || transcript} onChange={onchange}></input>
@@ -92,7 +93,7 @@ export default function Addnote(props) {
                     </div>
 
                     <div className="d-grid">
-                        <button disabled={note.title.length < 5 || note.description.length < 5} className="btn btn-primary btn-lg mx-2 btn-rounded" style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} id="submitButton" type="submit" onClick={handleClick}>Add Note</button>
+                        <button disabled={note.title.length < 5 || note.description.length < 5} className="btn btn-lg mx-2 btn-rounded addbtncss" style={{backgroundColor:"#19376D" , color:"white"}} id="submitButton" type="submit" onClick={handleClick}>Add Note</button>
                     </div>
 
                 </form>

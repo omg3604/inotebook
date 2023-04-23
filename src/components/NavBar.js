@@ -45,7 +45,7 @@ const NavBar = (props) => {
                             </form>
                         :   <form className="d-flex mx-2">
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-light dropdown-toggle d-flex flex-row align-items-center " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" className="btn btn-light dropdown-toggle d-flex flex-row align-items-center py-0 accountbtn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <p className='mx-2 pt-3'>{details.name}</p>
                                         <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" className="rounded-circle" style={{width : "40px"}} alt="Avatar"></img>
                                     </button>
@@ -54,7 +54,7 @@ const NavBar = (props) => {
                                         <a className="dropdown-item" href="/">Another action</a>
                                         <a className="dropdown-item" href="/">Something else here</a>
                                         <div className="dropdown-divider"></div>
-                                        <Link className='btn btn-primary mx-2 btn-rounded navbtn' style={{backgroundColor: "#92aad0" , borderColor: "#92aad0"}} to="/Login" role='button' onClick={handleLogout}> Log out </Link>
+                                        <Link className='btn btn-primary mx-2 btn-rounded navbtn' style={{backgroundColor: "#19376D" , borderColor: "#19376D"}} to="/Login" role='button' onClick={handleLogout}> Log out </Link>
                                     </div>
                                 </div>
                             </form>

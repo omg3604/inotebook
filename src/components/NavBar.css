@@ -51,3 +51,15 @@
 .linkcss:hover:after {
     transform: translateX(0);
 }
+
+/* ------------------------------------------------------- */
+
+.accountbtn{
+    background-color: #A5D7E8;
+    border-color: #A5D7E8;
+}
+
+.accountbtn:hover{
+    background-color: #19376D;
+    color: white;
+}

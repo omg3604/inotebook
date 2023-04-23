@@ -1,0 +1,27 @@
+.addbtncss {
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 500ms ease;
+  background-color: #19376D;
+}
+
+.addbtncss:hover {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  background-color: #19376D;
+  color: white;
+}
+
+.micicon:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* ------------------------------------------------------------------------ */
+
